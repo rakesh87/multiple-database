@@ -1,0 +1,69 @@
+
+default_sqlite: &default_sqlite
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+default_mysql: &default_mysql
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: root@123
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+
+default_postgreql: &default_postgreql
+  adapter: postgresql
+  encoding: unicode
+  timeout: 5000
+  pool: 5
+
+
+# custom settings for the sqlite database
+
+sqlite_database_development:
+  <<: *default_sqlite
+  database: db/development.sqlite3
+
+sqlite_database_test:
+  <<: *default_sqlite
+  database: db/test.sqlite3
+
+sqlite_database_production:
+  <<: *default_sqlite
+  database: db/production.sqlite3
+
+
+# custom setting for the mysql database
+
+mysql_database_development:
+  <<: *default_mysql
+  database: multiple_database_development
+
+mysql_database_test:
+  <<: *default_mysql
+  database: multiple_database_test
+
+mysql_database_production:
+  <: *default_mysql
+  database: <%= ENV['MYSQL_DATABASE_URL'] %>
+
+
+# will use default setting for the postges database
+
+development:
+  <<: *default_postgreql
+  username: postgres
+  password:
+  database: multiple_database_development
+
+test:
+  <<: *default_postgreql
+  username: postgres
+  password:
+  database: multiple_database_test
+
+production:
+  <<: *default_postgreql
+  database: <%= ENV['DATABASE_URL'] %>

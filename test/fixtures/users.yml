@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  phone: MyString
+  api_token: MyString
+  social_token: MyString
+  sociable_type: MyString
+  sociable_id: 1
+
+two:
+  email: MyString
+  phone: MyString
+  api_token: MyString
+  social_token: MyString
+  sociable_type: MyString
+  sociable_id: 1
